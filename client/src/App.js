@@ -1,27 +1,23 @@
-import React, { Component } from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import axios from 'axios'
 
-class App extends Component {
-  state = {
-    response: {}
-  };
+const App: React.FC = () => {
+    const [response, setResponse] = useState({})
 
-  componentDidMount() {
-    axios.get('/api/v1/say-something').then((res) => {
-      const response = res.data;
-      this.setState({response});
-    });
-  }
+    useEffect(() => {
+        axios.get('/api/v1/say-something').then((res) => {
+            const response = res.data;
+            setResponse(response);
+        });
+    }, []);
 
-  render() {
     return (
-      <div className="App">
-        <h1>Here is our new feature!</h1>
-        <h1>{this.state.response.body}</h1>
-      </div>
+        <div className="App">
+            <h1>Here is our new feature!</h1>
+            <h1>{response.body}</h1>
+        </div>
     );
-  }
-}
+};
 
 export default App;

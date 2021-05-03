@@ -37,7 +37,7 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging')
     app.get('*', function (req, res) {
         res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
     });
-};
+}
 
 // Catch any bad requests
 app.get('*', (req, res) => {
